@@ -5,8 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 var indexRouter = require('./routes/index');
+var mongoose = require("mongoose");
 
 var app = express();
+
+//mongoose.connect('localhost:27017/shopping');
+mongoose.connect("mongodb://127.0.0.1:27017/shopping", { useNewUrlParser: true }, function(e){
+  console.log('You are now connected to mongodb...');
+});
 
 // view engine setup
 app.engine(".hbs", expressHbs({defaultLayout : 'layout', extname : '.hbs'}));
