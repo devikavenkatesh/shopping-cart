@@ -17,7 +17,18 @@ passport.use('local-signup', new localStrategy({
     passwordField : 'password',
     passReqToCallback : true
 }, function(req, email, password, done){
-    console.log("1");
+    req.checkBody('email', 'Invlid Email').notEmpty().isEmail();
+    req.checkBody('password', 'Invlid password').notEmpty().isLength({min: 4 });
+    var errors = req.validationErrors();
+    if(errors){
+        //console.log(errors);
+        var messages = [];
+        errors.forEach(function(error){
+            messages.push(error.msg);
+        });
+        console.log(messages);
+        return done(null, false, req.flash('error', messages));
+    }
     User.findOne({'email' : email}, function(err, user){
         if(err){
             console.log('err');
