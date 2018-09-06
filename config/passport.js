@@ -73,6 +73,9 @@ passport.use('local-signin', new localStrategy({
         return done(null, false, req.flash('error', messages));
     }
     User.findOne({'email' : email}, function(err, user){
+        
+        console.log(err);
+        console.log(user);
         if(err){
             return done(err);
         }        
@@ -82,6 +85,8 @@ passport.use('local-signin', new localStrategy({
         if(!user.validPassword(password)) {
             return done(null, false, {message : 'Wrong password.'});
         }
+        console.log("user");
+        
         return done(null, user);
     });
 }));
