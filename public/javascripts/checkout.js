@@ -24,10 +24,8 @@ function stripeResponseHandler(status, response){
         $('#charge-error').removeClass('hidden');
         $form.find('button').prop('disbaled', false); //Reenable submission
     } else { //token was created
-        //alert("s");
         var token = response.id;
         //insert the token to form
-        //alert(token);
         $form.append($('<input type="hidden" name="stripeToken"/>').val(token));
         $form.get(0).submit();
     }
