@@ -4,8 +4,8 @@
         <h4>Your Total: Rs.{{total}}</h4>
         {{!-- <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}"> --}}
         {{!-- {{errMsg}} --}}
-        <div id="charge-error" class="alert alert-danger hidden"></div>
-            
+        <div id="charge-error" class="alert alert-danger {{#if noErrors}}hidden{{/if}}"></div>
+            {{ errMsg }}
         </div>
         <form action="/checkout" method="post" id="checkout-form">
             <div class="row">
